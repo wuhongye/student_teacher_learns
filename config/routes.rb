@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   delete '/room/destroy/:id', to: 'users#destroy_room', as: 'room_destroy'
   post '/room/new', to: 'users#create_room', as: 'room_create'
 
-
   resources :users
   resources :students
   resources :teachers

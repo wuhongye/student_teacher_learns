@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new
-        if params[:user][:mold] = "Student"
+        if params[:user][:mold] == "Student"
             @student = Student.new(user_attrs)
             if @student.save
                 signin_user @student
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
             else
                 render action: :new
             end
-        elsif params[:user][:mold] = "Teacher"
+        elsif params[:user][:mold] == "Teacher"
             @teacher = Teacher.new(user_attrs)
             if @teacher.save
                    signin_user @teacher
