@@ -1,0 +1,28 @@
+<%= render "layouts/header" %>
+<h1>老师信息列表</h1>
+
+<div class="row">
+<dl>
+    <dt>ID</dt>
+    <dd><%= @teacher.id %></dd>
+</dl>
+
+<dl>
+    <dt>用户名</dt>
+    <dd><%= @teacher.name %></dd>
+</dl>
+
+<% if !@teacher.class_rooms.empty? %>
+  <dl>
+    <dt>所在班级</dt>
+    <dd><%= @teacher.class_rooms.first.name %></dd>
+  </dl>
+
+  <dl>
+      <dt>班级学生</dt>
+      <% @teacher.class_rooms.first.users.where("type = 'Teacher' ").each do |f| %>
+            <dd><%= f.name %></dd>
+      <% end %> 
+  </dl>
+<% end %>
+</div>

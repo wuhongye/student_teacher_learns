@@ -1,0 +1,117 @@
+<%= render "layouts/header" %>
+<h1>管理员用户管理</h1>
+
+<div class="row">
+    <div class="col-sm-5">
+        
+        <dl>
+           <dt>管理员ID</dt>
+           <dd><%= current_user.id %></dd>
+        </dl> 
+
+        <dl>
+           <dt>管理员姓名</dt>
+           <dd><%= current_user.name %></dd>
+        </dl>
+
+        <div class="row">
+           <div class="col-sm-12">
+                <table class="table">
+                    <h1>学生管理</h1>
+                    <tr>
+                        <th>ID</th>
+                        <th>学生姓名</th>
+                        <th>所在班级</th>
+                        <th>修改学生所在班级</th>
+                        <th>删除该学生</th>
+                        <th></th>
+                    </tr>
+                    <% @students.each do |student| %>
+                    <tr>
+                        <th><%= student.id %></th>
+                        <th><%= student.name %></th>
+                        <%if !student.class_rooms.empty?%>
+                            <th><%= student.class_rooms.first.name %></th>
+                       <% else %>
+                            <th>学生不在班级序列</th>                            
+                       <% end %>
+                       <th><%= link_to '修改学生所在班级', edit_user_path(student) %></th>
+                       <th><%= link_to '删除该学生', user_path(student), method: :delete %></th>
+                    </tr>
+                    <% end %>
+                </table>
+           </div>
+        </div>
+
+        <div class="row">
+           <div class="col-sm-12">
+                <table class="table">
+                    <h1>老师管理</h1>
+                    <tr>
+                        <th>ID</th>
+                        <th>老师姓名</th>
+                        <th>老师所在班级</th>
+                        <th>修改老师所在班级</th>
+                        <th>删除该老师</th>
+                  </tr>
+                  <% @teachers.each do |teacher| %>
+                  <tr>
+                       <td><%= teacher.id %></td>
+                       <td><%= teacher.name %></td>
+                       <%if !student.class_rooms.empty? %>
+                            <td><%= teacher.class_rooms.first.roomname %></td>
+                       <% else %>
+                            <td>老师不在该班级序列</td>                       
+                       <% end %>
+                       <td><%=link_to '修改老师所在班级', edit_user_path(teacher) %></td>
+                       <td><%=link_to '删除该老师', user_path(teacher), method: :delete %></td>
+                       <td></td>                                                  
+                  </tr>            
+                  <% end %>
+              </table>
+           </div>            
+        </div>
+
+        <div class="row">
+           <div class="col-sm-12">
+                <table class="table">
+                    <h1>班级管理</h1>
+                    <tr>
+                        <th>ID</th>
+                        <th>班级名称</th>
+                        <th>学生所在班级数量</th>
+                        <th>老师所在班级数量</th>
+                        <th>删除班级</th>
+                        <th></th>                      
+                    </tr> 
+                    <% @class_rooms.each do |room| %>
+                    <tr>
+                       <th><%= romm.id %></th>
+                       <th><%= room.roomname %></th> 
+                       <% if room.users.exists?(mold: 'Student') %>
+                            <th><%= room.users.where("mold = Student").size %></th>
+                        <% else %>
+                            <th>该班级为空</th>                        
+                       <% end %>      
+                       <% if room.users.exists?(mold: 'Teacher')%>
+                            <th><%= room.users.where("mold = Teacher").size %></th>
+                       <% else %>
+                            <th>该班级为空</th>                       
+                       <% end %>
+                       <th><%= link_to '删除班级', "/room/destroy/#{room}", method: :delete, data: {confirm: "sure?"} %></th>
+                    </tr> 
+                    <% end %>                                    
+                </table>             
+           </div>          
+        </div>
+
+    <%= form_tag(room_create_path, method: :post, class: "form-inline") do %>
+        <div class="form-group">
+           <%= label_tag(:roomname, "班级名称") %>
+           <%= text_field_tag(:name) %>
+           <%=  %>                  
+        </div> 
+            <%= submit_tag "按名字创建班级", class: "btn btn-default" %>          
+    <% end %>    
+    </div>
+</div>
