@@ -32,7 +32,7 @@
                         <th><%= student.id %></th>
                         <th><%= student.name %></th>
                         <%if !student.class_rooms.empty?%>
-                            <th><%= student.class_rooms.first.name %></th>
+                            <th><%= student.class_rooms.first.roomname %></th>
                        <% else %>
                             <th>学生不在班级序列</th>                            
                        <% end %>
@@ -90,15 +90,15 @@
                     </tr> 
                     <% @class_rooms.each do |room| %>
                     <tr>
-                       <th><%= romm.id %></th>
+                       <th><%= room.id %></th>
                        <th><%= room.roomname %></th> 
                        <% if room.users.exists?(mold: 'Student') %>
-                            <th><%= room.users.where("mold = Student").size %></th>
+                            <th><%= room.users.where("mold = 'Student'").size %></th>
                         <% else %>
                             <th>该班级为空</th>                        
                        <% end %>      
                        <% if room.users.exists?(mold: 'Teacher')%>
-                            <th><%= room.users.where("mold = Teacher").size %></th>
+                            <th><%= room.users.where("mold = 'Teacher'").size %></th>
                        <% else %>
                             <th>该班级为空</th>                       
                        <% end %>
@@ -112,8 +112,7 @@
     <%= form_tag(room_create_path, method: :post) do %>
         <div class="form-group">
            <%= label_tag(:roomname, "班级名称") %>
-           <%= text_field_tag(:name) %>
-           <%=  %>                  
+           <%= text_field_tag(:roomname) %>             
         </div> 
             <%= submit_tag "按名字创建班级", class: "btn btn-default" %>          
     <% end %>    

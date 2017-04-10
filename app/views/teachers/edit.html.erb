@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <%= form_for(edit_user_path(@teacher), method: :post) do |f|%>
+        <%= form_for(@teacher,url: user_path(@teacher), method: :put) do |f|%>
         <div class="form-group">
         <ul class="list-unstyled">
             <% @teacher.errors.messages.values.flatten.each do |error| %>

@@ -9,7 +9,6 @@ class StudentsController < ApplicationController
         end
 
         def update
-            debugger
             @student = Student.find(params[:id])
             @student.attributes = student_attrs
             if @student.save
