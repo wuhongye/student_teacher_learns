@@ -9,8 +9,21 @@ Rails.application.routes.draw do
 
   delete '/room/destroy/:id', to: 'users#destroy_room', as: 'room_destroy'
   post '/room/new', to: 'users#create_room', as: 'room_create'
-
+   
   resources :users
-  resources :students
-  resources :teachers
+  resources :students do
+      collection do
+          get :search
+      end
+  end
+  resources :teachers do
+      collection do 
+          get :search
+      end      
+  end
+  resources :class_rooms do
+    collection do
+        get :search
+    end
+  end
 end

@@ -1,0 +1,41 @@
+<%= render "layouts/header" %>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+                <h1>老师管理</h1>
+                <div class="form-group">
+                <%= render 'teachers' %>
+                </div>
+                <form action="<%= search_teachers_path %>" method = "get">
+                    用户名:<input type="text" name="name" value="<%= params[:name] %>" />
+                    <input type="submit" name="搜索">
+                </form>
+                    <tr>
+                        <th>ID</th>
+                        <th>老师姓名</th>
+                        <th>老师所在班级</th>
+                        <th>修改老师所在班级</th>
+                        <th>编辑老师信息</th>
+                        <th>删除该老师</th>
+                    </tr>
+                <% @teachers.each do |teacher| %>
+                     <tr>
+                        <th><%= teacher.id %></th>
+                        <th><%= teacher.name %></th>
+                        <%if !teacher.class_rooms.empty? %>
+                            <th><%= teacher.class_rooms.first.roomname %></th>
+                        <% else %>
+                            <th>老师不在该班级序列</th>                       
+                        <% end %>
+                        <th><%= link_to '修改老师所在班级', edit_user_path(teacher) %></th>
+                        <th><%= link_to '修改老师信息', edit_teacher_path(teacher) %></th>
+                        <th><%= link_to '删除该老师', user_path(teacher), method: :delete %></th>
+                        <th></th>                                                  
+                     </tr>            
+                <% end %>
+        </table>
+
+        <%= will_paginate @teachers %>
+    </div>
+</div>

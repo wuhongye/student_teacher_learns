@@ -62,7 +62,7 @@ class UsersController < ApplicationController
             if class_room.nil?
                     class_room = ClassRoom.create(roomname: params[:roomname])
             end
-                    redirect_to user_path(current_user)
+                    redirect_to class_rooms_path
     end
 
     def destroy_room

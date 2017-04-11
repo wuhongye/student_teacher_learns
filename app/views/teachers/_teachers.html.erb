@@ -1,0 +1,9 @@
+<div>
+    <% if logged_in? %>
+        <% if current_user.admin? %>
+            <%= link_to "创建老师", new_teacher_path, class: "btn btn-primary" %>
+            <%= link_to "当前教师", teachers_path, class: "btn btn-default" %>
+            <%= link_to "返回上一级", teachers_path, class: "btn btn-default" %>
+        <% end-%>
+    <% end -%>
+</div>
