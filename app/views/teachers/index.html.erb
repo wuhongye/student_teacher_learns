@@ -30,7 +30,7 @@
                         <% end %>
                         <th><%= link_to '修改老师所在班级', edit_user_path(teacher) %></th>
                         <th><%= link_to '修改老师信息', edit_teacher_path(teacher) %></th>
-                        <th><%= link_to '删除该老师', user_path(teacher), method: :delete %></th>
+                        <th><%= link_to '删除该老师', user_path(teacher), method: :delete,  data: {confirm: "Are you sure?"} %></th>
                         <th></th>                                                  
                      </tr>            
                 <% end %>
