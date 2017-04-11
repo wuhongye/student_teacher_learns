@@ -15,6 +15,7 @@
                     <th>ID</th>
                     <th>学生姓名</th>
                     <th>所在班级</th>
+                    <th>班级老师</th>
                     <th>修改学生所在班级</th>
                     <th>编辑学生信息</th>
                     <th>删除该学生</th>
@@ -28,6 +29,14 @@
                         <th><%= student.class_rooms.first.roomname %></th>
                     <% else %>
                         <th>学生不在班级序列</th>                            
+                    <% end %>
+                    <% if !student.class_rooms.first.users.where("mold = 'Teacher'").empty? %>
+                        <% student.class_rooms.first.users.where("mold = 'Teacher' ").each do |f| %>
+                            <th><= link_to ></th>
+                            <th><%= f.name %></th>
+                        <% end %>
+                    <% else %>
+                        <th>此班级还未分配老师</th>
                     <% end %>
                     <th><%= link_to '修改学生所在班级', edit_user_path(student) %></th>
                     <th><%= link_to '修改学生信息',  edit_student_path(student)%></th>

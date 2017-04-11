@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
     
         def index
-            @students = Student.page(params[:page] || 1).per_page(params[:per_page] || 10).order("id desc")
+            @students = Student.where(mold: 'Student').page(params[:page] || 1).per_page(params[:per_page] || 10).order("id desc")
         end
 
         def new
@@ -52,6 +52,6 @@ class StudentsController < ApplicationController
         end
 
         def student_attrs
-            params.require(:student).permit(:name, :password, :password_confirmation)
+            params.require(:student).permit(:name, :password, :password_confirmation, :mold)
         end
 end

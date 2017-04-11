@@ -15,12 +15,12 @@
 <% if !@student.class_rooms.empty? %>
   <dl>
     <dt>所在班级</dt>
-    <dd><%= @student.class_rooms.first.name %></dd>
+    <dd><%= @student.class_rooms.first.roomname %></dd>
   </dl>
 
   <dl>
       <dt>授课老师</dt>
-      <% @student.class_rooms.first.users.where("type = 'Student' ").each do |f| %>
+      <% @student.class_rooms.first.users.where("mold = 'Teacher' ").each do |f| %>
             <dd><%= f.name %></dd>
       <% end %> 
   </dl>

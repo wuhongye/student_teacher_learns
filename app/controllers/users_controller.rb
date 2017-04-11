@@ -44,10 +44,11 @@ class UsersController < ApplicationController
             user = User.find(params[:id])
             user.class_rooms.clear
             if class_room.nil? || user.nil?
-                    redirect_to user_path(current_user)
+                    redirect_to user_path(user)
                     return
             end
             user.class_rooms << class_room
+
             redirect_to user_path(current_user)
     end
 

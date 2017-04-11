@@ -1,0 +1,2 @@
+class RemoveTypeFromUser < ApplicationRecord
+end

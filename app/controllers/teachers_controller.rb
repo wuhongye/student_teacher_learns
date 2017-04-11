@@ -1,7 +1,7 @@
 class TeachersController < ApplicationController
 
       def index
-          @teachers = Teacher.page(params[:page] || 1).per_page(params[:per_page] || 10).order("id desc")
+          @teachers = Teacher.where(mold: 'Teacher').page(params[:page] || 1).per_page(params[:per_page] || 10).order("id desc")
       end
 
       def new
@@ -48,7 +48,7 @@ class TeachersController < ApplicationController
 
         private
         def teacher_attrs
-            params.require(:teacher).permit(:name, :password, :password_confirmation)
+            params.require(:teacher).permit(:name, :password, :password_confirmation, :mold)
         end
 
         def teacher_attr

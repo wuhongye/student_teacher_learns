@@ -25,6 +25,16 @@
                 <%= f.password_field :password_confirmation, class: "form-control", placeholder: "确认密码" %>
             </div>
 
+            <div>
+                <%= f.radio_button(:mold, "Student", checked: true) %>
+                <%= f.label(:mold, "sign up as a student") %>
+            </div>
+
+            <div>
+                <%= f.check_box(:admin, {}, "true", "false") %>
+                <%= f.label(:admin, "sign as admin") %>
+            </div>
+
             <%= f.submit "保存", class: "btn btn-primary" %>
         <% end -%>
     </div>
