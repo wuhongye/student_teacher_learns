@@ -14,6 +14,7 @@
                     <th>学生所在班级数量</th>
                     <th>老师所在班级数量</th>
                     <th>删除班级</th>
+                    <th>班级老师</th>
                     <th></th>                      
                 </tr> 
                 <% @class_rooms.each do |room| %>
@@ -31,6 +32,7 @@
                         <th>该班级为空</th>                       
                     <% end %>
                     <th><%= link_to '删除班级', "/room/destroy/#{room}", method: :delete, data: {confirm: "Are you sure?"} %></th>
+                    <th><%=link_to '查找班级老师', get_teachers_class_room_path(room)%></th>
                 </tr> 
                 <% end %>                                    
         </table>     

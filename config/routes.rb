@@ -15,15 +15,21 @@ Rails.application.routes.draw do
       collection do
           get :search
       end
+
+      get :get_teachers, on: :member
   end
   resources :teachers do
       collection do 
           get :search
-      end      
+      end 
+
+      get :get_students, on: :member     
   end
   resources :class_rooms do
     collection do
         get :search
     end
+
+    get :get_teachers, on: :member
   end
 end

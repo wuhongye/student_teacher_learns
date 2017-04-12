@@ -12,4 +12,9 @@ class ClassRoomsController < ApplicationController
                render action: :index        
     end
 
+    def get_teachers
+            class_room = ClassRoom.find params[:id]            
+            @teachers = class_room.users.where("mold = 'Teacher' ").all
+        end
+
 end

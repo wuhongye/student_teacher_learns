@@ -46,6 +46,11 @@ class TeachersController < ApplicationController
                render action: :index                                              
         end
 
+        def get_students
+            teacher = Teacher.find params[:id]            
+            @students = teacher.class_rooms.first.users.where("mold = 'Student' ").all
+        end
+
         private
         def teacher_attrs
             params.require(:teacher).permit(:name, :password, :password_confirmation, :mold)

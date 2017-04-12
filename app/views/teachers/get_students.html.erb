@@ -1,0 +1,16 @@
+<%= render "layouts/header" %>
+
+<div class="row">
+    <div class="form-group">
+        <table class="table">
+            <tr>
+                <th>学生姓名</th>
+            </tr>
+            <% @students.each do |student| %>
+            <tr>
+                <th><%= student.name %></th>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
