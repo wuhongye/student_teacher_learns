@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <header name="top">
-      <nav class="navbar navbar-default navbar-fixed-top nav-color" role="navigation" id="nav">
-        <div class="container">
-          <div class="navbar-header nav-color">
-            <button id="nav_collapse" type="button" class="navbar-toggle toggle-btn" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-controls="bs-navbar-collapse-1">
-              <span class="fa fa-bars fa-lg"></span>
-            </button>
-            <a class="navbar-brand custom-logo-link" href="/">
-              用户信息管理
-            </a>
-          </div>
-
-          <div class="collapse navbar-collapse nav-submenu-color collapse" id="bs-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right custom">
-              <li>
-                <a href="#">Home</a>
-              </li>
-              <li>
-                <li><%= link_to '用户', current_user %></li>
-              </li>
-
-              <% if logged_in? %>
-                <li><%= link_to "#{current_user.name}, 退出", logout_path, method: 'delete' %></li>
-                   <% if current_user.admin? %>
-                       <li><%= link_to '老师管理', teachers_path %></li>
-                       <li><%= link_to '学生管理', students_path %></li>
-                       <li><%= link_to '教室管理', class_rooms_path %></li>
-                   <% else %>
-                       <li><%= link_to 'log in', login_path %> </li>                   
-                   <% end %>                  
-              <% end %>
-            </ul>
-          </div>
+<body>
+  <header name="top">
+    <nav class="navbar navbar-default navbar-fixed-top nav-color" role="navigation" id="nav">
+      <div class="container">
+        <div class="navbar-header nav-color">
+          <button id="nav_collapse" type="button" class="navbar-toggle toggle-btn" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-controls="bs-navbar-collapse-1">
+            <span class="fa fa-bars fa-lg"></span>
+          </button>
+          <a class="navbar-brand custom-logo-link" href="/">
+            用户信息管理
+          </a>
         </div>
-      </nav>
-    </header>
 
-    <div class="container body-offset">
-      <% if flash[:notice] %>
-        <div class="alert alert-info"><%= flash[:notice] %></div>
-      <% end -%>
-      
-      <%= yield %>
-    </div>
+        <div class="collapse navbar-collapse nav-submenu-color collapse" id="bs-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right custom">
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <li><%= link_to '用户', current_user %></li>
+            </li>
+
+            <% if logged_in? %>
+            <li><%= link_to "#{current_user.name}, 退出", logout_path, method: 'delete' %></li>
+            <% if current_user.admin? %>
+            <li><%= link_to '老师管理', teachers_path %></li>
+            <li><%= link_to '学生管理', students_path %></li>
+            <li><%= link_to '教室管理', class_rooms_path %></li>
+            <% else %>
+            <li><%= link_to 'log in', login_path %> </li>
+            <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container body-offset">
+    <% if flash[:notice] %>
+    <div class="alert alert-info"><%= flash[:notice] %></div>
+    <% end -%>
+
+    <%= yield %>
+  </div>
 
   <%= javascript_include_tag 'application' %>
   <%= yield :javascripts %>
-  </body>
+</body>
 </html>

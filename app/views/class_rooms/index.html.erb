@@ -1,50 +1,50 @@
 <%= render "layouts/header" %>
 
 <div class="row">
-    <div class="col-sm-12">
-        <table class="table">
-            <h1>班级管理</h1>
-            <form action="<%= search_class_rooms_path %>" method = "get">
-                班级名:<input type="text" name="roomname" value="<%= params[:roomname] %>" />
-                <input type="submit" name="搜索">
-            </form>
-                <tr>
-                    <th>ID</th>
-                    <th>班级名称</th>
-                    <th>学生所在班级数量</th>
-                    <th>老师所在班级数量</th>
-                    <th>删除班级</th>
-                    <th>班级老师</th>
-                    <th></th>                      
-                </tr> 
-                <% @class_rooms.each do |room| %>
-                <tr>
-                    <th><%= room.id %></th>
-                    <th><%= room.roomname %></th> 
-                    <% if room.users.exists?(mold: 'Student') %>
-                        <th><%= room.users.where("mold = 'Student'").size %></th>
-                    <% else %>
-                        <th>该班级为空</th>                        
-                    <% end %>      
-                    <% if room.users.exists?(mold: 'Teacher')%>
-                        <th><%= room.users.where("mold = 'Teacher'").size %></th>
-                    <% else %>
-                        <th>该班级为空</th>                       
-                    <% end %>
-                    <th><%= link_to '删除班级', "/room/destroy/#{room}", method: :delete, data: {confirm: "Are you sure?"} %></th>
-                    <th><%=link_to '查找班级老师', get_teachers_class_room_path(room)%></th>
-                </tr> 
-                <% end %>                                    
-        </table>     
+  <div class="col-sm-12">
+    <table class="table">
+      <h1>班级管理</h1>
+      <form action="<%= search_class_rooms_path %>" method = "get">
+        班级名:<input type="text" name="roomname" value="<%= params[:roomname] %>" />
+        <input type="submit" name="搜索">
+      </form>
+      <tr>
+        <th>ID</th>
+        <th>班级名称</th>
+        <th>学生所在班级数量</th>
+        <th>老师所在班级数量</th>
+        <th>删除班级</th>
+        <th>班级老师</th>
+        <th></th>
+      </tr>
+      <% @class_rooms.each do |room| %>
+      <tr>
+        <th><%= room.id %></th>
+        <th><%= room.roomname %></th>
+        <% if room.users.exists?(mold: 'Student') %>
+        <th><%= room.users.where("mold = 'Student'").size %></th>
+        <% else %>
+        <th>该班级为空</th>
+        <% end %>
+        <% if room.users.exists?(mold: 'Teacher')%>
+        <th><%= room.users.where("mold = 'Teacher'").size %></th>
+        <% else %>
+        <th>该班级为空</th>
+        <% end %>
+        <th><%= link_to '删除班级', "/room/destroy/#{room}", method: :delete, data: {confirm: "Are you sure?"} %></th>
+        <th><%=link_to '查找班级老师', get_teachers_class_room_path(room)%></th>
+      </tr>
+      <% end %>
+    </table>
 
-        <%= form_tag(room_create_path, method: :post, class: "form-inline") do %>
-            <div class="form-group">
-                <%= label_tag(:roomname, "班级名称") %>
-                <%= text_field_tag(:roomname) %>             
-            </div> 
-                <%= submit_tag "按名字创建班级", class: "btn btn-default" %>          
-        <% end %>           
+    <%= form_tag(room_create_path, method: :post, class: "form-inline") do %>
+    <div class="form-group">
+      <%= label_tag(:roomname, "班级名称") %>
+      <%= text_field_tag(:roomname) %>
+    </div>
+    <%= submit_tag "按名字创建班级", class: "btn btn-default" %>
+    <% end %>
 
-        <%= will_paginate @class_rooms %> 
-    </div>          
+    <%= will_paginate @class_rooms %>
+  </div>
 </div>

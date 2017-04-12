@@ -9,25 +9,25 @@ Rails.application.routes.draw do
 
   delete '/room/destroy/:id', to: 'users#destroy_room', as: 'room_destroy'
   post '/room/new', to: 'users#create_room', as: 'room_create'
-   
+
   resources :users
   resources :students do
-      collection do
-          get :search
-      end
+    collection do
+      get :search
+    end
 
-      get :get_teachers, on: :member
+    get :get_teachers, on: :member
   end
   resources :teachers do
-      collection do 
-          get :search
-      end 
+    collection do
+      get :search
+    end
 
-      get :get_students, on: :member     
+    get :get_students, on: :member
   end
   resources :class_rooms do
     collection do
-        get :search
+      get :search
     end
 
     get :get_teachers, on: :member

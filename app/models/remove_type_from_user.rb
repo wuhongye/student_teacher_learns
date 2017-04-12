@@ -1,2 +1,0 @@
-class RemoveTypeFromUser < ApplicationRecord
-end

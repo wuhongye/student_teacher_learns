@@ -1,13 +1,13 @@
 <h1>用户教室信息编辑</h1>
 
 <div class="row">
-    <div class="col-sm-12">
-        <%= form_tag(user_path(@user), method: :patch) do %>
-            <%= select("classroom", "id", ClassRoom.all.collect {|c| [c.roomname, c.id]}, { include_blank: true}, class: "form-control") %>
-            <div class="form-group">
-                <%= submit_tag "修改教室信息", class: "btn btn-primary" %>
-            </div>
-        <% end %>
-        <%= link_to 'show all class_rooms', user_path %>
+  <div class="col-sm-12">
+    <%= form_tag(user_path(@user), method: :patch) do %>
+    <%= select("classroom", "id", ClassRoom.all.collect {|c| [c.roomname, c.id]}, { include_blank: true}, class: "form-control") %>
+    <div class="form-group">
+      <%= submit_tag "修改教室信息", class: "btn btn-primary" %>
     </div>
+    <% end %>
+    <%= link_to 'show all class_rooms', user_path %>
+  </div>
 </div>

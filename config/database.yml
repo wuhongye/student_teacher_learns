@@ -11,20 +11,20 @@ default: &default
   username: root
   password: 123456
 
-development:
-  <<: *default
-  database: student_teacher_learns_development
+  development:
+    <<: *default
+    database: student_teacher_learns_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: student_teacher_learns_test
+    # Warning: The database defined as "test" will be erased and
+    # re-generated from your development database when you run "rake".
+    # Do not set this db to the same as development or production.
+  test:
+    <<: *default
+    database: student_teacher_learns_test
 
-production:
-  <<: *default
-  host: 127.0.0.1
-  database: student_teacher_learns_producton
-  username: student_teacher_learns
-  password: student_teacher_learns_p_roduction
+  production:
+    <<: *default
+    host: 127.0.0.1
+    database: student_teacher_learns_producton
+    username: student_teacher_learns
+    password: student_teacher_learns_p_roduction
